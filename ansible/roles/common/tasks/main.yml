@@ -1,0 +1,18 @@
+---
+- name: Wait for cloud-init to finish (avoids apt lock on first boot)
+  ansible.builtin.command: cloud-init status --wait
+  changed_when: false
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install base packages
+  ansible.builtin.apt:
+    name: "{{ common_packages }}"
+    state: present
+
+- name: Set timezone
+  community.general.timezone:
+    name: "{{ common_timezone }}"

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ nginx_site_title }}</title></head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 10%;">
+  <h1>{{ nginx_site_title }}</h1>
+  <p>Deployed by Jenkins + Terraform + Ansible</p>
+  <p>Host: {{ ansible_facts['hostname'] }} ({{ inventory_hostname }})</p>
+  <p>Jenkins build: #{{ build_number }}</p>
+</body>
+</html>
